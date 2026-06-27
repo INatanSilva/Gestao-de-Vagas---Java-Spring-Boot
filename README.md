@@ -37,6 +37,8 @@
 |-----------|--------|-----|
 | **Java** | 17 | Linguagem principal |
 | **Spring Boot** | 4.0.6 | Framework web |
+| **Spring Security** | Latest | Autenticação e autorização |
+| **JWT** | Latest | Tokens de autenticação | 
 | **Spring Data JPA** | Latest | Persistência de dados |
 | **Spring Validation** | Latest | Validação de dados |
 | **PostgreSQL** | Latest | Banco de dados |
@@ -303,6 +305,37 @@ A aplicação segue o padrão de **Clean Architecture** com **Use Cases** para m
 4. **Repositories** - Acessam dados usando Spring Data JPA
 5. **Exception Handler** - Trata erros globalmente de forma consistente
 6. **DTOs** - Transferem dados entre camadas
+
+## 🔐 Fluxo de Autenticação
+
+```text
+Cliente
+  |
+  v
+POST /auth/companies
+  |
+  v
+AuthCompanyController
+  |
+  v
+AuthCompanyUseCase
+  |  - valida credenciais
+  |  - gera JWT com expiração de 2 horas
+  v
+Resposta: Bearer token JWT
+  |
+  v
+Requisições protegidas
+  |
+  v
+SecurityFilter
+  |  - valida header Authorization
+  |  - permite ou bloqueia o acesso
+  v
+BasicAuthenticationFilter
+  v
+Endpoint protegido
+```
 
 ### Módulos por Funcionalidade
 
