@@ -11,7 +11,7 @@ public class CreateJobUseCase {
     
     @Autowired
     private JobRepository jobRepository;
-
+    
     public JobEntity execute(JobEntity jobEntity) {
         // Lógica para criar uma vaga de emprego
         return this.jobRepository.save(jobEntity);
